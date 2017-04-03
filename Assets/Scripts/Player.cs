@@ -9,12 +9,14 @@ public class Player : MonoBehaviour {
 	public float jumpSpeed = 5;
 	public float deadZone= -5;
 
-	new Rigidbody2D rigidbody; 
 
+	new Rigidbody2D rigidbody; 
+	GM _GM;
 
 	// Use this for initialization
 	void Start () {
 		rigidbody = GetComponent<Rigidbody2D>(); 
+		_GM = FindObjectOfType<GM>();
 	}
 	
 	// Update is called once per frame
@@ -39,5 +41,11 @@ public class Player : MonoBehaviour {
 		{
 			Debug.Log ("You're Out"); 
 		}
+			
+	}
+
+	public void GetOut(){
+
+		_GM.SetLives (_GM.lives - 1);
 	}
 }

@@ -52,5 +52,6 @@ public class Player : MonoBehaviour {
 		_GM.SetLives (_GM.GetLives() - 1 );
 		transform.position = startingPosition; 
 		Debug.Log ("You're Out");
+
 	}
 }

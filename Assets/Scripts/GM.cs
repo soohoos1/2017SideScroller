@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class GM : MonoBehaviour {
 
 	private int _lives = 3;
-	public int points;
+	private int _Points;
 
 	public Text pointsValue;
 	public Text livesValue; 
@@ -17,7 +17,8 @@ public class GM : MonoBehaviour {
 		Debug.Log ("lives now equal:" + _lives); 
 		livesValue.text = _lives.ToString ();
 
-		if (_lives == 0) {
+		if (_lives == 0) 
+		{
 			DoGameOver ();
 		}
 
@@ -27,6 +28,17 @@ public class GM : MonoBehaviour {
 	{
 		return _lives;
 
+	}
+
+	public void SetPoints (int newValue)
+	{
+		_Points = newValue;
+		pointsValue.text = _Points.ToString ();
+	}
+
+	public int GetPoints ()
+	{
+		return _Points;
 	}
 
 

@@ -15,7 +15,8 @@ public class Player : MonoBehaviour {
 	private Vector3 startingPosition;
 
 	// Use this for initialization
-	void Start () {
+	void Start () 
+	{
 		startingPosition = transform.position; 
 		rigidbody = GetComponent<Rigidbody2D>(); 
 		_GM = FindObjectOfType<GM>();
@@ -47,7 +48,8 @@ public class Player : MonoBehaviour {
 			
 	}
 
-	public void GetOut(){
+	public void GetOut()
+	{
 
 		_GM.SetLives (_GM.GetLives() - 1 );
 		transform.position = startingPosition; 

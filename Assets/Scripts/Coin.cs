@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
+	public void OnCollisionEnter2D(Collision2D coll) 
+	{
+		var player = coll.gameObject.GetComponent<Player> ();
+		if (player != null)
+		{
+			gameObject.SetActive(false);
+			//FindObjectOfType<GM>().SetPoints(FindObjectOfType
+		}
+			
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
 }

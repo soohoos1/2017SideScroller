@@ -14,7 +14,7 @@ public class Coin : MonoBehaviour {
 		{
 			
 			gameObject.SetActive(false);
-			FindObjectOfType<GM>().SetPoints(FindObjectOfType<GM>().GetPoints() + 1);
+			FindObjectOfType<GM>().SetPoints(FindObjectOfType<GM>().GetPoints() + pointsValue);
 		
 		
 		}

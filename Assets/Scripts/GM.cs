@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class GM : MonoBehaviour {
 
 	private int _lives = 3;
-	private int _Points;
+	public int _Points;
 
 	public Text pointsValue;
 	public Text livesValue; 

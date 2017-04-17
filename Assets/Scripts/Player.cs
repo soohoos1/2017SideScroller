@@ -17,6 +17,7 @@ public class Player : MonoBehaviour {
 
 	private Animator anim; 
 	public bool Air; 
+	private SpriteRenderer sr; 
 
 	// Use this for initialization
 	void Start () 
@@ -27,6 +28,7 @@ public class Player : MonoBehaviour {
 
 		anim = GetComponent <Animator> ();
 		Air = true; 
+		sr = GetComponent<SpriteRenderer>();
 	}
 	
 	// Update is called once per frame
@@ -57,6 +59,12 @@ public class Player : MonoBehaviour {
 
 		//rigidbody.velocity = new Vector2 (x * speed, rigidbody.velocity.y);
 
+		if (v.x > 0)
+			sr.flipX = false;
+		else if (v.x < 0)
+			sr.flipX = true; 
+
+
 		if (Input.GetButtonDown ("Jump") && (v.y == 0 || canFly)) 
 		{
 			v.y = jumpSpeed;
@@ -74,6 +82,12 @@ public class Player : MonoBehaviour {
 		}
 			
 	}
+
+	public void Powerup()
+	{
+		anim.SetTrigger ("Powerup");
+	}
+
 
 	public void GetOut()
 	{
@@ -93,4 +107,6 @@ public class Player : MonoBehaviour {
 	{
 		Air = true;
 	}
+
+
 }

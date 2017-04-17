@@ -14,8 +14,9 @@ public class Water : MonoBehaviour {
 		
 	}
 
-	public void On QueryTriggerEnter2D(Collider2D collision)
+	private void OnTriggerEnter2D(Collider2D collision)
 	{
+		Debug.Log ("Entered into water");
 		var player = collision.gameObject.GetComponent<Player>();
 		if (player != null)
 		{
@@ -23,8 +24,9 @@ public class Water : MonoBehaviour {
 		}
 	}
 
-	public void On QueryTriggerEnter2D(Collider2D collision)
+	private void OnTriggerExit2D(Collider2D collision)
 	{
+		Debug.Log ("Exited water");
 		var player = collision.gameObject.GetComponent<Player>();
 		if (player != null)
 		{

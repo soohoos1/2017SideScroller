@@ -48,7 +48,7 @@ public class Player : MonoBehaviour {
 		}
 
 
-		if (Air) 
+		if (v.y != 0) 
 		{
 			anim.SetBool ("Air", true);
 		}
@@ -59,11 +59,15 @@ public class Player : MonoBehaviour {
 
 		//rigidbody.velocity = new Vector2 (x * speed, rigidbody.velocity.y);
 
-		if (v.x > 0)
+		if (v.x > 0) 
+		{
 			sr.flipX = false;
-		else if (v.x < 0)
-			sr.flipX = true; 
+		} 
 
+		else if (v.x < 0) 
+		{
+			sr.flipX = true; 
+		}
 
 		if (Input.GetButtonDown ("Jump") && (v.y == 0 || canFly)) 
 		{

@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Bomb : MonoBehaviour {
+
+	public int diameter = 5; 
 
 	void OnCollisionEnter2D(Collision2D coll) 
 	{
@@ -12,7 +15,7 @@ public class Bomb : MonoBehaviour {
 			var enemies = FindObjectsOfType <Enemy>();
 			foreach (var e in enemies) 
 			{
-				if(Vector3.Distance(this.transform.position, e.transform.position) < 10)
+				if(Vector3.Distance(this.transform.position, e.transform.position) < diameter)
 				{
 					e.gameObject.SetActive(false);
 				}

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Bomb : Throwable {
+public class StunGrenade : Throwable {
 
 	public float diameter = 5; 
 
@@ -23,7 +23,7 @@ public class Bomb : Throwable {
 			Explode ();
 		}
 	}
-		
+
 
 	public void Explode ()
 	{
@@ -32,9 +32,24 @@ public class Bomb : Throwable {
 		{
 			if(Vector3.Distance(this.transform.position, e.transform.position) < diameter)
 			{
-				e.gameObject.SetActive(false);
+				StartCoroutine(Stun (e)); 
 			}
 		}
+
+		collider2D.enabled = false; 
+		GetComponent <SpriteRenderer> ().enabled = false; 
 	}
+
+	IEnumerator Stun (Enemy e)
+	{
+		var Renderer = e.GetComponent<SpriteRenderer> ();
+
+		e.enabled = false; 
+		Renderer.color = new Color (1, 1, 1, .4F);
+		yield return new WaitForSeconds (5);
+
+		e.enabled = true;
+	}
+
 
 }

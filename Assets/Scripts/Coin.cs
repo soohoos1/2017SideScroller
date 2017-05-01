@@ -6,6 +6,7 @@ public class Coin : MonoBehaviour {
 
 	public int pointsValue; 
 
+
 	public void OnCollisionEnter2D(Collision2D coll) 
 	{
 		

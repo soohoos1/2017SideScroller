@@ -43,12 +43,28 @@ public class StunGrenade : Throwable {
 	IEnumerator Stun (Enemy e)
 	{
 		var Renderer = e.GetComponent<SpriteRenderer> ();
+		var animator = e.GetComponent<Animator> (); 
 
 		e.enabled = false; 
-		Renderer.color = new Color (1, 1, 1, .4F);
+		if (animator != null) 
+		{
+			animator.enabled = false;
+		}
+
+		for (int i = 0; i < 10; i++) 
+		{
+			Renderer.color = new Color (1, 1, 1, (1-i * .1f));
+			yield return new WaitForSeconds (.1f);
+		}
+
+
 		yield return new WaitForSeconds (5);
 
-		e.enabled = true;
+		e.enabled = true; 
+		if (animator != null) 
+		{
+			animator.enabled = false;
+		}
 	}
 
 

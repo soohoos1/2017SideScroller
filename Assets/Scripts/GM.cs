@@ -10,6 +10,7 @@ public class GM : MonoBehaviour {
 	public Text livesValue; 
 
 	public GameObject gameOverSign;
+	public GameObject youWinSign; 
 
 
 	public void SetLives(int newvalue){
@@ -34,6 +35,14 @@ public class GM : MonoBehaviour {
 	{
 		_Points = newValue;
 		pointsValue.text = _Points.ToString ();
+
+		var coinsLeft = FindObjectsOfType <Coin> ().Length;
+		Debug.Log ("coinsleft: " +coinsLeft);
+
+		if (coinsLeft == 0) 
+		{
+			DoYouWin ();
+		}
 	}
 
 	public int GetPoints ()
@@ -45,6 +54,12 @@ public class GM : MonoBehaviour {
 	void DoGameOver()
 	{
 		gameOverSign.SetActive (true);
+	}
+
+	void DoYouWin ()
+	{
+		youWinSign.SetActive(true); 
+
 	}
 
 

@@ -39,10 +39,6 @@ public class GM : MonoBehaviour {
 		var coinsLeft = FindObjectsOfType <Coin> ().Length;
 		Debug.Log ("coinsleft: " +coinsLeft);
 
-		if (coinsLeft == 0) 
-		{
-			DoYouWin ();
-		}
 	}
 
 	public int GetPoints ()
@@ -56,11 +52,6 @@ public class GM : MonoBehaviour {
 		gameOverSign.SetActive (true);
 	}
 
-	void DoYouWin ()
-	{
-		youWinSign.SetActive(true); 
-
-	}
 
 
 }

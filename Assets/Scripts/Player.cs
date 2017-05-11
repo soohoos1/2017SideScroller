@@ -123,7 +123,11 @@ public class Player : MonoBehaviour {
 	void OnCollisionExit2D(Collision2D col)
 	{
 		Air = true;
+		{
+			transform.parent = null;
+		}
 	}
+
 
 
 }

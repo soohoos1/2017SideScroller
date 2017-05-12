@@ -6,12 +6,14 @@ public class PlantEater : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D coll)
 	{
-		if (!enabled) {
+		if (!enabled) 
+		{
 			return;
 		}
 
 		var player = coll.gameObject.GetComponent<Player> ();
-		if (player != null) { 
+		if (player != null) 
+		{ 
 			player.speed *= .5f;
 			StartCoroutine (Slow (player));
 		}

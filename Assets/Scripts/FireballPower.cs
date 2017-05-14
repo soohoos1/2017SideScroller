@@ -10,6 +10,10 @@ public class FireballPower : MonoBehaviour {
 	public Vector2 offset = new Vector2 (.4f, .1f);
 	public float cooldown = 1f;
 
+	void Start ()
+	{
+
+	}
 	
 	// Update is called once per frame
 	void Update () 

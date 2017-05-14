@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon : MonoBehaviour {
+public class Weapon : MonoBehaviour 
+{
 
 	protected new Rigidbody2D rigidbody2D; 
 	protected new Collider2D collider2D; 
@@ -15,7 +16,8 @@ public class Weapon : MonoBehaviour {
 
 
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+	{
 
 	}
 
@@ -27,12 +29,14 @@ public class Weapon : MonoBehaviour {
 	public virtual void GetPickedUp (Player player)
 	{
 		Debug.Log ("Got Picked Up");
-		this.transform.parent = player.transform; 
-		transform.localScale = new Vector3 (.02f, .02f);
-		transform.localPosition = new Vector3 (.02f, .02f);
+		collider2D.enabled = false;
 		rigidbody2D.isKinematic = true;
 		rigidbody2D.velocity = new Vector2 ();
-		collider2D.enabled = false;
+		transform.parent = player.transform; 
+		transform.localScale = new Vector3 (.02f, .02f);
+		transform.localPosition = new Vector3 (.02f, .02f);
+		player.AddWeapon (this);
+
 
 	}
 }

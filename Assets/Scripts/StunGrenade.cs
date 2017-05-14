@@ -8,15 +8,9 @@ public class StunGrenade : Throwable {
 	public float diameter = 5; 
 
 
-
-	void Update ()
+	void OnCollisionEnter2D(Collision2D coll) 
 	{
-
-	}
-
-	void OnCollisionEnter2D(Collision2D collision) 
-	{
-		var player = collision.gameObject.GetComponent<Player> ();
+		var player = coll.gameObject.GetComponent<Player> ();
 
 		if (isActive && player == null) 
 		{
@@ -28,6 +22,7 @@ public class StunGrenade : Throwable {
 	public void Explode ()
 	{
 		var enemies = FindObjectsOfType <Enemy>();
+
 		foreach (var e in enemies) 
 		{
 			if(Vector3.Distance(this.transform.position, e.transform.position) < diameter)
@@ -42,7 +37,7 @@ public class StunGrenade : Throwable {
 
 	IEnumerator Stun (Enemy e)
 	{
-		var Renderer = e.GetComponent<SpriteRenderer> ();
+		var renderer = e.GetComponent<SpriteRenderer> ();
 		var animator = e.GetComponent<Animator> (); 
 
 		e.enabled = false; 
@@ -53,18 +48,19 @@ public class StunGrenade : Throwable {
 
 		for (int i = 0; i < 10; i++) 
 		{
-			Renderer.color = new Color (1, 1, 1, (1-i * .1f));
+			renderer.color = new Color (1, 1, 1, 1-(i * .1f));
 			yield return new WaitForSeconds (.1f);
 		}
 
 
 		yield return new WaitForSeconds (5);
 
-		e.enabled = true; 
+
 		if (animator != null) 
 		{
 			animator.enabled = false;
 		}
+		e.enabled = true;
 	}
 
 

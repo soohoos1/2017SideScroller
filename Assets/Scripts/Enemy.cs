@@ -13,6 +13,7 @@ public class Enemy : MonoBehaviour {
 		{
 			return;
 		}
+
 		var player = coll.gameObject.GetComponent<Player> ();
 		if (player != null)  //! means not 
 		{

@@ -3,17 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Throwable : Weapon {
-	
+
 	public bool isActive = false; 
 
 
 	public override void Attack ()
 	{
-		this.transform.parent = null;
+		collider2D.enabled = true;
 		rigidbody2D.isKinematic = false;
 		rigidbody2D.velocity = new Vector2 (5, 0);
-		collider2D.enabled = true;
-
+		transform.parent = null;
 	}
 
 	public override void GetPickedUp(Player player)

@@ -22,12 +22,17 @@ public class Fireball : MonoBehaviour {
 		}
 	}
 
-	void OnCollisionEnter2D (Collision2D col)
+	void OnCollisionEnter2D (Collision2D coll)
 	{ 
 		rb.velocity = new Vector2 (velocity.x, -velocity.y);
-		if (col.collider.tag == "deadly") 
+		if (coll.collider.tag == "deadly") 
 		{
-			Destroy (col.gameObject);
+			Destroy (coll.gameObject);
+			Explode ();
+		}
+
+		if (coll.contacts [0].normal.x != 0) 
+		{
 			Explode ();
 		}
 	}

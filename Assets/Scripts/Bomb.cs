@@ -7,10 +7,14 @@ public class Bomb : Throwable {
 
 	public float diameter = 5; 
 
-
-	void OnCollisionEnter2D(Collision2D collision) 
+	void Update ()
 	{
-		var player = collision.gameObject.GetComponent<Player> ();
+		
+	}
+
+	void OnCollisionEnter2D(Collision2D coll) 
+	{
+		var player = coll.gameObject.GetComponent<Player> ();
 
 		if (isActive && player == null) 
 		{

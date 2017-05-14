@@ -9,12 +9,15 @@ public class Player : MonoBehaviour {
 	public float jumpSpeed = 5;
 	public float deadZone= -5;
 	public bool canFly = false; 
+	public bool changeSpeed = false;
 
-	public Weapon currentWeapon; 
+	private Weapon currentWeapon; 
+	private List<Weapon> weapons = new List<Weapon> ();
 
 	new Rigidbody2D rigidbody; 
 	GM _GM;
 	private Vector3 startingPosition;
+	private GameObject coll; 
 
 	private Animator anim; 
 	public bool Air; 
@@ -23,10 +26,9 @@ public class Player : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-		startingPosition = transform.position; 
 		rigidbody = GetComponent<Rigidbody2D>(); 
 		_GM = FindObjectOfType<GM>();
-
+		startingPosition = transform.position;
 		anim = GetComponent <Animator> ();
 		Air = true; 
 		sr = GetComponent<SpriteRenderer>();
@@ -48,6 +50,19 @@ public class Player : MonoBehaviour {
 			anim.SetBool ("Running", false);
 		}
 
+		if (v.x > 0) {
+			sr.flipX = false;
+
+		} 
+		else if (v.x < 0) 
+		{
+			sr.flipX = true;
+		}
+
+		if (Input.GetButtonDown("Jump") && (v.y  == 0 || canFly))
+			{
+				v.y = jumpSpeed;
+			}
 
 		if (v.y != 0) 
 		{
@@ -60,21 +75,6 @@ public class Player : MonoBehaviour {
 
 		//rigidbody.velocity = new Vector2 (x * speed, rigidbody.velocity.y);
 
-		if (v.x > 0) 
-		{
-			sr.flipX = false;
-		} 
-
-		else if (v.x < 0) 
-		{
-			sr.flipX = true; 
-		}
-
-		if (Input.GetButtonDown ("Jump") && (v.y == 0 || canFly)) 
-		{
-			v.y = jumpSpeed;
-		
-		}
 
 		rigidbody.velocity = v;
 		//rigidbody.AddForce(new Vector2 (x * speed, 0));
@@ -86,6 +86,14 @@ public class Player : MonoBehaviour {
 			currentWeapon.Attack();
 		}
 
+		if (Input.GetButtonDown ("Fire2")) 
+		{
+			int i = (weapons.IndexOf (currentWeapon) + 1) % weapons.Count;
+			SetCurrentWeapon(weapons [i]);
+		}
+
+
+
 		if (transform.position.y < deadZone) 
 		{
 			Debug.Log ("You're Out"); 
@@ -94,12 +102,6 @@ public class Player : MonoBehaviour {
 			
 	}
 
-	public void Powerup()
-	{
-		anim.SetTrigger ("Powerup");
-	}
-
-
 	public void GetOut()
 	{
 
@@ -107,6 +109,32 @@ public class Player : MonoBehaviour {
 		transform.position = startingPosition; 
 		Debug.Log ("You're Out");
 
+	}
+
+	public void Powerup()
+	{
+		anim.SetTrigger ("Powerup");
+	}
+
+	public void AddWeapon (Weapon w)
+	{
+		weapons.Add (w);
+		SetCurrentWeapon (w);
+	}
+
+	public void SetCurrentWeapon (Weapon w)
+	{
+		if (currentWeapon != null) 
+		{
+			currentWeapon.gameObject.SetActive (false);
+		}
+
+		currentWeapon = w;
+
+		if (currentWeapon != null)
+		{
+			currentWeapon.gameObject.SetActive (true);
+		}
 	}
 
 	void OnCollisionEnter2D(Collision2D coll)

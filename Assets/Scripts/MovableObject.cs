@@ -21,9 +21,11 @@ public class MovableObject : MonoBehaviour {
 	void Update () 
 	{
 		Platform.transform.position = Vector3.MoveTowards (Platform.transform.position, currentPoint.position, Time.deltaTime * moveSpeed);	
+
 		if (Platform.transform.position == currentPoint.position)
 		{
 			pointsSelection++;
+
 			if (pointsSelection == points.Length)
 			{
 				pointsSelection = 0;
